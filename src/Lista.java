@@ -1,6 +1,4 @@
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
+ 
 public class Lista {
     private String[] nomes;
     private int[] ids;
@@ -59,11 +57,11 @@ public class Lista {
 
     private void adicionarAoHistorico(int index) {
         if (historicoTamanho < historicoAtendidos.length) {
-            String dataAtendimento = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
-            historicoAtendidos[historicoTamanho] = "ID: " + ids[index] + ", Nome: " + nomes[index] + ", Motivo: " + motivos[index] + ", Data: " + dataAtendimento;
+            historicoAtendidos[historicoTamanho] = "ID: " + ids[index] + ", Nome: " + nomes[index] + ", Motivo: " + motivos[index];
             historicoTamanho++;
         }
     }
+    
 
     public String buscarPaciente(int id) {
         for (int i = 0; i < tamanho; i++) {

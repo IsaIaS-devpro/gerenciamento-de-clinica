@@ -4,7 +4,7 @@ public class App {
     public static void main(String[] args) {
         Lista lista = new Lista(100);  
         Scanner scanner = new Scanner(System.in);
-        int r = 1;
+        int r;
 
         do {
             System.out.println("________BEM VINDOS AO GERENCIAMENTO DE FILA DA CLÍNICA ______");
@@ -14,6 +14,8 @@ public class App {
             System.out.println("03. Buscar Paciente");
             System.out.println("04. Listar Pacientes");
             System.out.println("05. Chamar Próximo Paciente");
+            System.out.println("06. Listar Histórico de Atendimentos");
+            System.out.println("07. Desfazer Última Operação");
             System.out.println("00. Sair");
             System.out.print("\n DIGITE SUA ESCOLHA: ");
             r = scanner.nextInt();
@@ -47,6 +49,12 @@ public class App {
                     break;
                 case 5:
                     lista.chamarProximoPaciente();
+                    break;
+                case 6:
+                    lista.listarHistoricoAtendimentos();
+                    break;
+                case 7:
+                    lista.desfazerUltimaOperacao();
                     break;
                 case 0:
                     System.out.println("Saindo do sistema...");
