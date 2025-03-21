@@ -1,4 +1,3 @@
- 
 public class Lista {
     private String[] nomes;
     private int[] ids;
@@ -9,6 +8,9 @@ public class Lista {
     private int proximoId;
     private int historicoTamanho;
     private String ultimaOperacao;
+    private String ultimoNome;
+    private String ultimoMotivo;
+    private boolean ultimoAtendido;
 
     public Lista(int capacidade) {
         this.nomes = new String[capacidade];
@@ -41,6 +43,9 @@ public class Lista {
         for (int i = 0; i < tamanho; i++) {
             if (ids[i] == id) {
                 adicionarAoHistorico(i);
+                ultimoNome = nomes[i];
+                ultimoMotivo = motivos[i];
+                ultimoAtendido = atendidos[i];
                 ultimaOperacao = "remover:" + ids[i];
                 for (int j = i; j < tamanho - 1; j++) {
                     nomes[j] = nomes[j + 1];
@@ -62,7 +67,6 @@ public class Lista {
         }
     }
     
-
     public String buscarPaciente(int id) {
         for (int i = 0; i < tamanho; i++) {
             if (ids[i] == id) {
@@ -116,7 +120,16 @@ public class Lista {
             removerPaciente(id);
             System.out.println("Última adição desfeita.");
         } else if (operacao.equals("remover")) {
-            System.out.println("Não é possível desfazer uma remoção neste sistema.");
+            if (tamanho >= nomes.length) {
+                System.out.println("Lista cheia. Não é possível restaurar o paciente removido.");
+                return;
+            }
+            nomes[tamanho] = ultimoNome;
+            ids[tamanho] = id;
+            motivos[tamanho] = ultimoMotivo;
+            atendidos[tamanho] = ultimoAtendido;
+            tamanho++;
+            System.out.println("Última remoção desfeita.");
         }
         ultimaOperacao = "";
     }
