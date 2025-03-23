@@ -2,11 +2,13 @@ public class Lista {
     private String[] nomes;
     private int[] ids;
     private String[] motivos;
+    // os três de cima são os principais no sentido de armazenar os dados dos pacientes
     private boolean[] atendidos;
     private String[] historicoAtendidos;
-    private int tamanho;
-    private int proximoId;
-    private int historicoTamanho;
+    private int tamanho; // controle do tamanho da lista
+    private int proximoId; // próximo id, lembrar de decrementar caso seja desfeita a ultima operação se for de adição
+    private int historicoTamanho; 
+    // os 3 abaixo são para armazenar a última operação realizada p/ controle de desfazer
     private String ultimaOperacao;
     private String ultimoNome;
     private String ultimoMotivo;
@@ -14,14 +16,15 @@ public class Lista {
 
     public Lista(int capacidade) {
         this.nomes = new String[capacidade];
-        this.ids = new int[capacidade];
+        this.ids = new int[capacidade];          
         this.motivos = new String[capacidade];
-        this.atendidos = new boolean[capacidade];
-        this.historicoAtendidos = new String[capacidade];
-        this.tamanho = 0;
-        this.proximoId = 1;
-        this.historicoTamanho = 0;
-        this.ultimaOperacao = "";
+        // os 3 acimas são como se fossem apenas um, logo o mesmo tamanho
+        this.atendidos = new boolean[capacidade]; // só pode ser atendido a capacidade da lista 
+        this.historicoAtendidos = new String[capacidade]; 
+        this.tamanho = 0; // sem pacientes, a principio
+        this.proximoId = 1; // 1 e será incrementado a cada paciente adicionado
+        this.historicoTamanho = 0;   
+        this.ultimaOperacao = ""; // sem operações mas ela armaena a última
     }
 
     public boolean adicionarPaciente(String nome, String motivo) {
@@ -118,6 +121,7 @@ public class Lista {
 
         if (operacao.equals("adicionar")) {
             removerPaciente(id);
+            proximoId--;
             System.out.println("Última adição desfeita.");
         } else if (operacao.equals("remover")) {
             if (tamanho >= nomes.length) {
