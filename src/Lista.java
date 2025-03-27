@@ -3,8 +3,8 @@ public class Lista {
     private int[] ids;
     private String[] motivos;
     // os três de cima são os principais no sentido de armazenar os dados dos pacientes
-    private boolean[] atendidos;
-    private String[] historicoAtendidos;
+    private boolean[] atendidos; // mediante a solicitação de atendimento, o paciente é marcado como atendido
+    private String[] historicoAtendidos; // armazena os pacientes atendidos
     private int tamanho; // controle do tamanho da lista
     private int proximoId; // próximo id, lembrar de decrementar caso seja desfeita a ultima operação se for de adição
     private int historicoTamanho; 

@@ -2,8 +2,11 @@ import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
+
         Lista lista = new Lista(100);  
+        
         Scanner scanner = new Scanner(System.in);
+
         int r;
 
         do {
